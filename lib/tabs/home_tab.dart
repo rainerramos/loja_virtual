@@ -15,7 +15,7 @@ class HomeTab extends StatelessWidget {
             Color.fromARGB(255, 253, 181, 168)
           ],
           begin: Alignment.topLeft,
-          end: Alignment.topRight
+          end: Alignment.bottomRight
         )
       ),
     );
