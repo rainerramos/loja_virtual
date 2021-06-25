@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/Datas/product_data.dart';
 import 'package:loja_virtual/tiles/product_tile.dart';
@@ -59,9 +58,9 @@ class CategoryScreen extends StatelessWidget {
                       itemCount: snapshot.data.documents.length,
                       itemBuilder: (context, index){
                         return ProductTile("list", ProductData.fromDocument(snapshot.data.documents[index]));
-                      },
+                      }
                     )
-                  ],
+                  ]
                 );
             },
           )),
