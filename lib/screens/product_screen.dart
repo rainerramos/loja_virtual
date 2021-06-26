@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/Datas/product_data.dart';
@@ -16,6 +18,8 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
 
   final ProductData product;
+
+  String size;
 
   _ProductScreenState(this.product);
 
@@ -63,6 +67,51 @@ class _ProductScreenState extends State<ProductScreen> {
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
                     color: primaryColor
+                  ),
+                ),
+                SizedBox(
+                  height: 16.0,
+                ),
+                Text(
+                  "Tamanho",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500
+                  ),
+                ),
+                SizedBox(
+                  height: 34.0,
+                  child: GridView(
+                    padding: EdgeInsets.symmetric(vertical: 4.0),
+                    scrollDirection: Axis.horizontal,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      mainAxisSpacing: 8.0,
+                      childAspectRatio: 0.5
+                    ),
+                    children: product.sizes.map(
+                        (s) {
+                          return GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                size = s;
+                              });
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                                border: Border.all(
+                                  color: s == size ? primaryColor : Colors.grey[500],
+                                  width: 3.0
+                                )
+                              ),
+                              width: 50.0,
+                              alignment: Alignment.center,
+                              child: Text(s),
+                            ),
+                          );
+                        }
+                    ).toList(),
                   ),
                 )
               ],
